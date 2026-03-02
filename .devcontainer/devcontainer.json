@@ -1,0 +1,9 @@
+{
+  "name": "Rye: HTTP request from WASM",
+  "image": "ubuntu:noble",
+  "postCreateCommand": "bash .devcontainer/postCreate.sh",
+  "features": {
+    "ghcr.io/devcontainers/features/go:1": {},
+    "ghcr.io/devcontainers/features/common-utils": {}
+  }
+}
