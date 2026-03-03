@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>HTTP request for PicoRye</title>
+    <script type="text/javascript" src="wasm_exec.js"></script>
+</head>
+<body>
+<h2>HTTP Request from inside WASM using PicoRye</h2>
+
+<p>This example uses <a href="https://github.com/refaktor/picorye">picorye</a> and two custom <em>builtins</em>.</p>
+<p>See the output in browser developer console.</p>
+
+<p>Actual code:</p>
+<pre>
+
+"https://httpbin.org/anything" .httpget .print
+
+</pre>
+<script type="text/javascript">
+    const go = new Go();
+    WebAssembly.instantiateStreaming(fetch('main.wasm'), go.importObject).then((result) => {
+        go.run(result.instance);
+    });
+</script>
+<section>
+    <h4>Info</h4>
+    <ul>
+        <li><a href="https://github.com/wasm-outbound-http-examples/rye/tree/main/browser-and-deno-picorye/">Demo source code</a></li>
+        <li>Versions used on the moment of build:<small>
+            Golang: 1.26.0,
+            PicoRye: <a href="https://github.com/refaktor/picorye/tree/35eb4f5fb9e8f33bfebe0a342eeb12a443308c71">commit 35eb4f5f</a>.
+        </small></li>
+    </ul>
+</section>
+<footer><small>Created for (wannabe-awesome) <a href="https://github.com/vasilev/HTTP-request-from-inside-WASM">list</a></small></footer>
+</body>
+</html>
